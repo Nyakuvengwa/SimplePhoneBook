@@ -22,10 +22,10 @@ namespace SimplePhoneBook.Data.Data.Helper
             int id = 1;
             var phonNumberTypesToInsert = new List<PhoneNumberType>()
             {
-                new PhoneNumberType(){ Id = id++ , Name = "Mobile" , ModifiedDate = DateTime.Now},
-                new PhoneNumberType(){ Id = id++ , Name = "Home" , ModifiedDate = DateTime.Now},
-                new PhoneNumberType(){ Id = id++ , Name = "Work" , ModifiedDate = DateTime.Now},
-                new PhoneNumberType(){ Id = id++ , Name = "Other" , ModifiedDate = DateTime.Now}
+                new PhoneNumberType(){ Id = id++ , Name = "Mobile" },
+                new PhoneNumberType(){ Id = id++ , Name = "Home" },
+                new PhoneNumberType(){ Id = id++ , Name = "Work" },
+                new PhoneNumberType(){ Id = id++ , Name = "Other" }
             };
             _modelBuilder.Entity<PhoneNumberType>().HasData(phonNumberTypesToInsert);
         }

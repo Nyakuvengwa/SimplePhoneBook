@@ -13,6 +13,7 @@ namespace SimplePhoneBook.Api.Models
         [Required]
         public string LastName { get; set; }
         public List<PhoneNumberModel> PhoneNumber { get; set; }
+        [EmailAddress]
         public string EmailAddress { get; set; }
         public string Base64EncodedImage { get; set; }
     }

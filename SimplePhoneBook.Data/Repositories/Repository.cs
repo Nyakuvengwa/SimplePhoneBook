@@ -64,7 +64,7 @@ namespace SimplePhoneBook.Data.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"{nameof(entity)} could not be updated: {ex.Message}");
+                throw new Exception($"{nameof(entity)} could not be updated: {ex.Message}" ,ex);
             }
         }
 
@@ -82,7 +82,7 @@ namespace SimplePhoneBook.Data.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"{nameof(entity)} could not be updated: {ex.Message}");
+                throw new Exception($"{nameof(entity)} could not be updated: {ex.Message}", ex);
             }
         }
     }

@@ -6,14 +6,15 @@ namespace SimplePhoneBook.Common.API
 {
     public interface IContactService
     {
+        Task<Contact> AddContactAsync(Contact contact);
         Task DeleteContactByIdAsync(int contactId);
 
-        Task<List<Contact>> FindContactsByQueryString(string searchTerm);
+        Task<List<Contact>> FindContactsByQueryStringAsync(string searchTerm);
 
-        Task<List<Contact>> GetAllContacts();
+        Task<List<Contact>> GetAllContactsAsync();
 
         Task<Contact> GetContactByIdAsync(int contactId);
 
-        Task<Contact> UpdateContact(Contact contact);
+        Task<Contact> UpdateContactAsync(Contact contact);
     }
 }

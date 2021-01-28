@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SimplePhoneBook.Data.Migrations
 {
@@ -16,8 +15,7 @@ namespace SimplePhoneBook.Data.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     EmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Base64EncodedImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Base64EncodedImage = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,8 +29,7 @@ namespace SimplePhoneBook.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -48,8 +45,7 @@ namespace SimplePhoneBook.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ContactId = table.Column<int>(type: "int", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    PhoneNumberTypeId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    PhoneNumberTypeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,13 +67,13 @@ namespace SimplePhoneBook.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "PhoneNumberType",
-                columns: new[] { "Id", "ModifiedDate", "Name" },
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 1, 27, 22, 48, 54, 259, DateTimeKind.Local).AddTicks(2972), "Mobile" },
-                    { 2, new DateTime(2021, 1, 27, 22, 48, 54, 260, DateTimeKind.Local).AddTicks(4679), "Home" },
-                    { 3, new DateTime(2021, 1, 27, 22, 48, 54, 260, DateTimeKind.Local).AddTicks(4700), "Work" },
-                    { 4, new DateTime(2021, 1, 27, 22, 48, 54, 260, DateTimeKind.Local).AddTicks(4702), "Other" }
+                    { 1, "Mobile" },
+                    { 2, "Home" },
+                    { 3, "Work" },
+                    { 4, "Other" }
                 });
 
             migrationBuilder.CreateIndex(

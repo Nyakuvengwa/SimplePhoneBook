@@ -15,6 +15,11 @@ namespace SimplePhoneBook.Common.Service
             _contactRepository = contactRepository;
         }
 
+        public async Task<Contact> AddContactAsync(Contact contact)
+        {
+            return await _contactRepository.AddAsync(contact);
+        }
+
         public async Task DeleteContactByIdAsync(int contactId)
         {
             var contact = await _contactRepository.GetContactByIdAsync(contactId);
@@ -25,12 +30,12 @@ namespace SimplePhoneBook.Common.Service
             await  _contactRepository.DeleteAsync(contact);
         }
 
-        public async Task<List<Contact>> FindContactsByQueryString(string searchTerm)
+        public async Task<List<Contact>> FindContactsByQueryStringAsync(string searchTerm)
         {
             return await _contactRepository.FindContactsByQueryString(searchTerm);
         }
 
-        public async Task<List<Contact>> GetAllContacts()
+        public async Task<List<Contact>> GetAllContactsAsync()
         {
             return await _contactRepository.GetAllContacts();
         }
@@ -40,7 +45,7 @@ namespace SimplePhoneBook.Common.Service
             return await _contactRepository.GetContactByIdAsync(contactId);
         }
 
-        public async Task<Contact> UpdateContact(Contact contact)
+        public async Task<Contact> UpdateContactAsync(Contact contact)
         {
             return await _contactRepository.UpdateAsync(contact);
         }

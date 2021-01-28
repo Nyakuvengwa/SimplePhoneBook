@@ -25,7 +25,7 @@ namespace SimplePhoneBook.Data.Repositories
 
         public async Task<List<Contact>> GetAllContacts()
         {
-            return await GetAll().ToListAsync();
+            return await GetAll().Include(c => c.PhoneNumber).ToListAsync();
         }
 
         public async Task<Contact> GetContactByIdAsync(int contactId)
