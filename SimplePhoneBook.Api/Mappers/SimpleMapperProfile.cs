@@ -13,6 +13,8 @@ namespace SimplePhoneBook.Api.Mappers
         public SimpleMapperProfile()
         {
             CreateMap<PhoneNumberTypeModel, PhoneNumberType>().ReverseMap();
+            CreateMap<ContactModel, Contact>().ReverseMap();
+            CreateMap<PhoneNumberModel, PhoneNumber>().ReverseMap();
         }
     }
 }

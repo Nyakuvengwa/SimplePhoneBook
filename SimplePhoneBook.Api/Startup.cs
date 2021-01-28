@@ -44,6 +44,8 @@ namespace SimplePhoneBook.Api
             services.AddTransient<IPhoneNumberTypeRepository, PhoneNumberTypeRepository>();
 
             services.AddTransient<IPhoneNumberTypeService, PhoneNumberTypeService>();
+            services.AddTransient<IContactService, ContactService>();
+
 
             services.AddAutoMapper(new ProfileRegistry().RegisteredProfiles);
         }
