@@ -31,5 +31,18 @@ namespace SimplePhoneBook.Api.Controllers
             var phoneNumberTypes = await _phoneNumberTypeService.GetAllPhoneNumberTypes();
             return phoneNumberTypes.Select(type => _mapper.Map<PhoneNumberTypeModel>(type)).ToList();
         }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<PhoneNumberTypeModel>> GetPhoneNumberTypeById(int id)
+        {
+            var phoneNumberTypes = await _phoneNumberTypeService.GetPhoneNumberTypeById(id);
+            if (phoneNumberTypes == null)
+            {
+                return NotFound();
+            }
+            return _mapper.Map<PhoneNumberTypeModel>(phoneNumberTypes);
+        }
     }
 }
