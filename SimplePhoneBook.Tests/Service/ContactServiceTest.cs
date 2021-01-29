@@ -17,6 +17,14 @@ namespace SimplePhoneBook.Tests.Service
 
            Assert.NotNull(result);
         }
+        [Fact]
+        public async Task AddContactAsyncThrowsExceptionWhenNullContactIsPassed()
+        {
+            var contactRepository = TestHelper.GetMockContactRepository();
+            var service = new ContactService(contactRepository);
+
+            await Assert.ThrowsAsync< System.Exception>(() => service.AddContactAsync(null));
+        }
 
         [Fact]
         public async Task UpdateContactAsyncReturnsContactWhenValidContactIsPassedAsync()
