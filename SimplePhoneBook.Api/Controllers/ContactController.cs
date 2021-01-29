@@ -41,6 +41,13 @@ namespace SimplePhoneBook.Api.Controllers
             var contact = await _contactService.GetContactByIdAsync(id);
             return  _mapper.Map<ContactModel>(contact);
         }
+        [HttpGet("SearchContacts/{searchTerm}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<ContactModel>>> SearchContacts(string searchTerm)
+        {
+            var contacts = await _contactService.FindContactsByQueryStringAsync(searchTerm);
+            return contacts.Select(contact => _mapper.Map<ContactModel>(contact)).ToList();
+        }
 
         [HttpPost("CreateNewContact")]
         [ProducesResponseType(StatusCodes.Status200OK)]

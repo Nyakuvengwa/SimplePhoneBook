@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ContactModel, ContactClient } from 'src/app/api/SimplePhoneBookApi';
@@ -10,11 +11,16 @@ import { ContactModel, ContactClient } from 'src/app/api/SimplePhoneBookApi';
 })
 export class ContactComponent implements OnInit {
 
+  searchForm: FormGroup = this.fb.group({
+    search: [''],
+  });
+
   contacts$: Observable<ContactModel[]> | undefined;
   showSnackBar = false;
   snackBarTitle = '';
   snackBarMessage = '';
   constructor(
+    private fb: FormBuilder,
     private contactClient: ContactClient,
     private router: Router) { }
 
@@ -36,5 +42,12 @@ export class ContactComponent implements OnInit {
           this.showSnackBar = true;
         });
     }
+  }
+
+  searchForContact(): void {
+    this.contacts$ = this.contactClient.searchContacts(this.searchForm.get('search')?.value);
+  }
+  refreshContact(): void {
+    this.contacts$ = this.contactClient.getAllContacts();
   }
 }
