@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimplePhoneBook.Data.Data;
 
 namespace SimplePhoneBook.Data.Migrations
 {
     [DbContext(typeof(SimplePhoneBookDbContext))]
-    partial class SimplePhoneBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210129064558_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

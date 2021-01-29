@@ -19,13 +19,14 @@ namespace SimplePhoneBook.Data.Repositories
             return await GetAll().Where(c => 
             c.FirstName.ToLower().Contains(searchTerm.ToLower()) ||
             c.LastName.ToLower().Contains(searchTerm.ToLower()) ||
+            c.PhoneNumber.ToLower().Contains(searchTerm.ToLower()) ||
             c.EmailAddress.ToLower().Contains(searchTerm.ToLower())
             ).ToListAsync();
         }
 
         public async Task<List<Contact>> GetAllContacts()
         {
-            return await GetAll().Include(c => c.PhoneNumber).ToListAsync();
+            return await GetAll().ToListAsync();
         }
 
         public async Task<Contact> GetContactByIdAsync(int contactId)

@@ -17,6 +17,10 @@ namespace SimplePhoneBook.Common.Service
 
         public async Task<Contact> AddContactAsync(Contact contact)
         {
+            if (contact == null)
+            {
+                throw new System.Exception($"{nameof(DeleteContactByIdAsync)} contact can not be null");
+            }
             return await _contactRepository.AddAsync(contact);
         }
 

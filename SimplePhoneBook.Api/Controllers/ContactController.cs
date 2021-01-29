@@ -27,15 +27,22 @@ namespace SimplePhoneBook.Api.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet("GetAllContacts")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<ContactModel>>> GetAllContacts()
         {
             var contacts = await _contactService.GetAllContactsAsync();
             return contacts.Select(contact => _mapper.Map<ContactModel>(contact)).ToList();
         }
+        [HttpGet("GetContact/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<ContactModel>> GetContacts(int id)
+        {
+            var contact = await _contactService.GetContactByIdAsync(id);
+            return  _mapper.Map<ContactModel>(contact);
+        }
 
-        [HttpPost("create")]
+        [HttpPost("CreateNewContact")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ContactModel>> SaveContact(ContactModel contactModel)
@@ -52,7 +59,7 @@ namespace SimplePhoneBook.Api.Controllers
             }
         }
 
-        [HttpPut("update")]
+        [HttpPut("UpdateContact")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ContactModel>> UpdateContact(ContactModel contactModel)
@@ -66,6 +73,22 @@ namespace SimplePhoneBook.Api.Controllers
             catch (Exception e)
             {
 
+                return BadRequest(e.Message);
+            }
+
+        }
+        [HttpDelete("DeleteContact/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> DeleteContact(int id)
+        {
+            try
+            { 
+                await _contactService.DeleteContactByIdAsync(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
                 return BadRequest(e.Message);
             }
 
